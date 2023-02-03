@@ -18,33 +18,40 @@ sendBtnElement.addEventListener('click', function(){
     let mailUser = mailInputElement.value;
     console.log(mailUser);
 
-    //se lista vuota, inserisco
-    if (mailList.length === 0){
-        mailList.push(mailUser);
-        mailFeedback.innerHTML = mailUser + ' was correctly saved in our system';
+    //aggiunto check input non vuoto
+    if (mailUser === '') {
+        alert('email not insert')
     } else {
-        //controllo che la mail sia uguale o no per ogni elemento della lista
-        let control = 0;
-
-        for (let i = 0; i < mailList.length; i++){
-
-            if (mailUser === mailList[i]){
-                control++;
-            } 
-
-        }
-
-        if (control === 0){
+        //se lista vuota, inserisco
+        if (mailList.length === 0){
             mailList.push(mailUser);
             mailFeedback.innerHTML = mailUser + ' was correctly saved in our system';
         } else {
-            alert('your mail is already saved in our system');
-            mailFeedback.innerHTML = '';
+            //controllo che la mail sia uguale o no per ogni elemento della lista
+            let control = 0;
+    
+            for (let i = 0; i < mailList.length; i++){
+    
+                if (mailUser === mailList[i]){
+                    control++;
+                } 
+    
+            }
+    
+            if (control === 0){
+                mailList.push(mailUser);
+                mailFeedback.innerHTML = mailUser + ' was correctly saved in our system';
+            } else {
+                alert('your mail is already saved in our system');
+                mailFeedback.innerHTML = '';
+            }
+    
         }
+    
+        console.log(mailList);
+
 
     }
-
-    console.log(mailList);
 
 })
 
