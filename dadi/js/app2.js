@@ -7,22 +7,57 @@
 let dicePlayers = ['player1', 'pc'];
 console.log(dicePlayers);
 
-//per ogni player, gli assegno un numero rnd
+//richiamo gli elementi del DOM necessari
+let diceFacePlayer = document.querySelector('.dice__face-player');
+let diceFacePc = document.querySelector('.dice__face-pc');
+let winnerBanner = document.querySelector('.winner__banner');
+
+//creo una lista parallela per contenere la faccia del dado di ogni player
+let diceFaceExtraction = ['', ''];
+
+//per ogni player, gli assegno un numero rnd e una faccia del dado
 for (let i = 0; i < dicePlayers.length; i++){
     let rndNum = Math.floor(Math.random()*6) + 1;
     dicePlayers[i] = rndNum;
 
+    switch (rndNum){
+        case 1:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-one"></i>';
+            break;
+        case 2:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-two"></i>';
+            break;
+        case 3:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-three"></i>';
+            break;
+        case 4:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-four"></i>';
+            break;
+        case 5:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-five"></i>';
+            break;
+        case 6:
+            diceFaceExtraction[i] = '<i class="fa-solid fa-dice-six"></i>';
+            break;
+    }
 }
 
 console.log('your num is', dicePlayers[0], 'pc num is', dicePlayers[1]);
 
-//dichiaro il vincitore a seconda del caso
+//mostro a schermo le facce del dado per ogni player
+diceFacePlayer.innerHTML = diceFaceExtraction[0];
+diceFacePc.innerHTML = diceFaceExtraction[1];
+
+//dichiaro il vincitore a seconda del caso, e lo mostro a schermo
 if (dicePlayers[0] === dicePlayers[1]){
     console.log('it\'a draw');
+    winnerBanner.innerHTML = 'it\'a draw'
 } else if (dicePlayers[0] > dicePlayers[1]){
     console.log('YOU WIN');
+    winnerBanner.innerHTML = 'YOU WIN'
 } else {
-    console.log('PC WIN');
+    console.log('PC WINS');
+    winnerBanner.innerHTML = 'PC WINS'
 }
 
 
